@@ -355,13 +355,13 @@ a:hover {
 	margin: 20px auto 30px auto;
 	width: 250px;
 }
-.crypto-card-container {
+.cryptoCard-container {
 	min-height: 65vh !important;
 }
-.crypto-card {
+.cryptoCard {
 	min-width: 250px;
 }
-.crypto-card .crypto-image {
+.cryptoCard .cryptoCard-image {
 	width: 35px;
 }
 .select-timeperiod {

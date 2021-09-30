@@ -1,10 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import millify from 'millify';
+import { Link } from 'react-router-dom';
+import { Card, Row, Col, Input } from 'antd';
 
-const CryptoCurrencies = () => {
+import { useGetCryptosQuery } from '../../services/cryptoApi.services';
+
+
+const CryptoCurrencies = (props) => {
+    const { simplified } = props;
+    const count = simplified ? 10 : 100;
+    const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
+    const [cryptos, setCryptos] = useState(Array());
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+    };
+
+    useEffect(() => {
+        setCryptos(cryptosList?.data?.coins);
+
+        const filteredCryptos = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        setCryptos(filteredCryptos);
+    }, [cryptosList, searchTerm])
+
+    if (isFetching) return 'Loading...';
+
     return (
-        <div>
-            CryptoCurrencies
-        </div>
+        <>
+            {!simplified && (
+                <div className="search-crypto">
+                    <Input placeholder="Search Cryptocurrency" onChange={handleSearch} />
+                </div>
+            )}
+            <Row gutters={[32, 32]} className="cryptoCard-container">
+                {
+                    cryptos && cryptos?.map((currency) => (
+                        <Col xs={24} sm={12} lg={6} className="cryptoCard" key={currency.id}>
+                            <Link to={`/crypto/${currency.id}`}>
+                                <Card
+                                    title={`${currency.rank}. ${currency.name}`}
+                                    extra={<img className="cryptoCard-image" src={currency.iconUrl} alt={currency.name} />}
+                                    hoverable
+                                >
+                                    <p>Price: {currency.price}</p>
+                                    <p>Market Cap: {currency.mark}</p>
+                                    <p>Daily Change: {currency.change}%</p>
+                                </Card>
+                            </Link>
+                        </Col>
+                    ))
+                }
+            </Row>
+        </>
     )
 }
 
