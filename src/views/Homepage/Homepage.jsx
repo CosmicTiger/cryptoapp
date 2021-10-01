@@ -46,8 +46,8 @@ const Homepage = () => {
             <CryptoCurrencies simplified />
             <div className="Homepage-headingWrapper">
                 <Title level={2} className="Homepage-title">Latest Crypto News</Title>
-                <Title level={3} className="Homepage-showMore">
-                    <Link to="/cryptocurrencies">Show more</Link>
+                <Title level={3}>
+                    <Link to="/news">Show more</Link>
                 </Title>
             </div>
             <News simplified />

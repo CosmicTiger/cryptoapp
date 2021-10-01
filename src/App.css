@@ -290,30 +290,31 @@ a:hover {
 .select-news {
 	width: 180px;
 }
-.news-card {
+
+.NewsCard {
 	min-height: 300px !important;
 }
-.news-image-container {
+.NewsCard-imageContainer {
 	display: flex !important;
 	justify-content: space-between !important;
 }
-.news-title {
+.NewsCard-title {
 	width: 70%;
 }
 
-.news-image-container .img {
+.NewsCard-imageContainer img {
 	width: 100px;
 	height: 100px;
 }
-.news-card p {
+.NewsCard p {
 	color: black;
 	margin: 10px 0px !important;
 }
-.provider-container {
+.ProviderCard {
 	display: flex;
 	justify-content: space-between;
 }
-.provider-name {
+.ProviderCard-name {
 	margin-left: 10px;
 }
 

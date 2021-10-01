@@ -10,7 +10,7 @@ const CryptoCurrencies = (props) => {
     const { simplified } = props;
     const count = simplified ? 10 : 100;
     const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
-    const [cryptos, setCryptos] = useState(Array());
+    const [cryptos, setCryptos] = useState([])
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (e) => {
@@ -44,9 +44,9 @@ const CryptoCurrencies = (props) => {
                                     extra={<img className="cryptoCard-image" src={currency.iconUrl} alt={currency.name} />}
                                     hoverable
                                 >
-                                    <p>Price: {currency.price}</p>
-                                    <p>Market Cap: {currency.mark}</p>
-                                    <p>Daily Change: {currency.change}%</p>
+                                    <p>Price: {millify(currency.price)}</p>
+                                    <p>Market Cap: {millify(currency.marketCap)}</p>
+                                    <p>Daily Change: {millify(currency.change)}%</p>
                                 </Card>
                             </Link>
                         </Col>
