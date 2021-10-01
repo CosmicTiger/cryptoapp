@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Layout as AntLayout } from 'antd';
 import Homepage from '../../views/Homepage';
 import Exchanges from '../../views/Exchanges';
