@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from '../../services/cryptoNewsApi.services';
 import { useGetCryptosQuery } from '../../services/cryptoApi.services';
+import Loader from '../../components/Loader';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -16,7 +17,7 @@ const News = (props) => {
     const { data } = useGetCryptosQuery(100);
     const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
 
-    if (!cryptoNews?.value) return 'Loading...';
+    if (!cryptoNews?.value) return <Loader />;
 
     const handleCryptoNewsSearch = (value) => {
         setNewsCategory(value);
